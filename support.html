@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thence Support</title>
+  <meta name="description" content="Official support page for the Thence iOS app." />
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f5f5f7;
+      --card: rgba(255, 255, 255, 0.82);
+      --text: #1d1d1f;
+      --secondary: #6e6e73;
+      --border: rgba(0, 0, 0, 0.10);
+      --accent: #007aff;
+      --shadow: 0 16px 44px rgba(0, 0, 0, 0.08);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #000000;
+        --card: rgba(28, 28, 30, 0.82);
+        --text: #f5f5f7;
+        --secondary: #a1a1a6;
+        --border: rgba(255, 255, 255, 0.14);
+        --accent: #0a84ff;
+        --shadow: 0 16px 44px rgba(0, 0, 0, 0.35);
+      }
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 20% 0%, rgba(0,122,255,.10), transparent 32%),
+                  radial-gradient(circle at 85% 12%, rgba(255,149,0,.10), transparent 28%),
+                  var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      min-height: 100vh;
+    }
+    .page {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 52px 20px 80px;
+    }
+    header {
+      padding: 28px 0 30px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(36px, 7vw, 60px);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+      font-weight: 700;
+    }
+    .subtitle {
+      margin: 16px auto 0;
+      max-width: 680px;
+      color: var(--secondary);
+      font-size: 19px;
+      line-height: 1.4;
+    }
+    .language-bar {
+      margin: 28px auto 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--card);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    label {
+      color: var(--secondary);
+      font-size: 14px;
+    }
+    select {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 8px 30px 8px 12px;
+      color: var(--text);
+      background: linear-gradient(45deg, transparent 50%, var(--secondary) 50%) right 14px center / 6px 6px no-repeat,
+                  linear-gradient(135deg, var(--secondary) 50%, transparent 50%) right 10px center / 6px 6px no-repeat,
+                  rgba(128,128,128,.10);
+      font: inherit;
+      font-size: 14px;
+      outline: none;
+      cursor: pointer;
+    }
+    main {
+      display: grid;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    h2 {
+      margin: 0 0 16px;
+      font-size: 24px;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+    }
+    p {
+      margin: 0 0 14px;
+      color: var(--secondary);
+      line-height: 1.6;
+    }
+    p:last-child {
+      margin-bottom: 0;
+    }
+    .faq-item {
+      margin-bottom: 18px;
+    }
+    .faq-item:last-child {
+      margin-bottom: 0;
+    }
+    ul {
+      margin: 12px 0 0;
+      padding-left: 1.4em;
+      color: var(--secondary);
+    }
+    li + li {
+      margin-top: 10px;
+    }
+    .contact {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .contact-row {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      color: var(--secondary);
+    }
+    .contact-row strong {
+      color: var(--text);
+      min-width: 90px;
+      font-weight: 600;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .footer {
+      margin-top: 50px;
+      color: var(--secondary);
+      font-size: 13px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex;
+      color: var(--secondary);
+      font-size: 13px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 12px;
+      background: rgba(128,128,128,.08);
+      margin-bottom: 16px;
+    }
+    @media (max-width: 560px) {
+      .page { padding-top: 34px; }
+      .card { padding: 22px; border-radius: 18px; }
+      .subtitle { font-size: 17px; }
+      h2 { font-size: 22px; }
+    }
+    @media print {
+      body { background: #fff !important; color: #000 !important; }
+      .language-bar, .app-mark { display: none; }
+      .card { box-shadow: none; border: 1px solid #d2d2d7; break-inside: avoid; }
+      a { color: #000; text-decoration: underline; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1 data-i18n="title">Thence Support</h1>
+      <p class="subtitle" data-i18n="subtitle">Help, contact information, and frequently asked questions for Thence.</p>
+      <div class="language-bar" aria-label="Language selector">
+        <label for="language" data-i18n="languageLabel">Language</label>
+        <select id="language">
+          <option value="en">English</option>
+          <option value="zh-CN">简体中文</option>
+          <option value="zh-TW">繁體中文</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+        </select>
+      </div>
+    </header>
+
+    <main>
+      <section class="card">
+        <span class="badge" data-i18n="official">Official Support</span>
+        <h2 data-i18n="aboutTitle">About Thence</h2>
+        <p data-i18n="aboutBody">Thence helps you rediscover your life by organizing authorized photos, places, calendars, reminders, and memories into a personal timeline and Life Chapters.</p>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="contactTitle">Contact Support</h2>
+        <p data-i18n="contactBody">If you need help, have feedback, or want to report an issue, please contact us using the information below.</p>
+        <div class="contact">
+          <div class="contact-row">
+            <strong data-i18n="emailLabel">Email</strong>
+            <a href="mailto:whz-apple-dev@outlook.com">whz-apple-dev@outlook.com</a>
+          </div>
+          <div class="contact-row">
+            <strong data-i18n="responseLabel">Response time</strong>
+            <span data-i18n="responseBody">We usually respond within 3–5 business days.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="privacyTitle">Privacy & Data</h2>
+        <p data-i18n="privacyBody">You can review the Thence Privacy Policy for details about data access, storage, deletion, and user rights.</p>
+        <p><a href="https://whzzone.github.io/thence-docs/privacy.html" target="_blank" data-i18n="privacyLink">View Privacy Policy</a></p>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="faqTitle">Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+          <p><strong data-i18n="faq1Q">Where is my data stored?</strong></p>
+          <p data-i18n="faq1A">Thence is designed with privacy in mind. Personal timeline data is stored locally on your device unless a feature explicitly states otherwise.</p>
+        </div>
+
+        <div class="faq-item">
+          <p><strong data-i18n="faq2Q">Can I delete my data?</strong></p>
+          <p data-i18n="faq2A">Yes. You can delete timeline data, Life Chapters, and related content directly in the app. You can also revoke permissions at any time in iOS Settings.</p>
+        </div>
+
+        <div class="faq-item">
+          <p><strong data-i18n="faq3Q">Why does Thence request access to Photos, Calendar, Reminders, or Location?</strong></p>
+          <p data-i18n="faq3A">These permissions allow Thence to reconstruct your personal timeline, discover meaningful days, and generate Life Chapters from authorized data.</p>
+        </div>
+
+        <div class="faq-item">
+          <p><strong data-i18n="faq4Q">How can I request account or data deletion?</strong></p>
+          <p data-i18n="faq4A">All data is stored locally. To fully remove data, simply delete the app. For additional inquiries, contact support via email.</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="troubleshootingTitle">Troubleshooting</h2>
+        <ul>
+          <li data-i18n="tip1">Make sure Thence has the required permissions in iOS Settings.</li>
+          <li data-i18n="tip2">Restart the app if recently granted permissions do not appear immediately.</li>
+          <li data-i18n="tip3">Keep your device updated to the latest iOS version supported by the app.</li>
+          <li data-i18n="tip4">If a purchase does not appear, use Restore Purchases in the app.</li>
+        </ul>
+      </section>
+    </main>
+
+    <p class="footer"><span data-i18n="footer">© 2026 Thence. All rights reserved.</span></p>
+  </div>
+
+  <script>
+    const translations = {
+      "en": {
+        title:"Thence Support",
+        subtitle:"Help, contact information, and frequently asked questions for Thence.",
+        languageLabel:"Language",
+        official:"Official Support",
+        aboutTitle:"About Thence",
+        aboutBody:"Thence helps you rediscover your life by organizing authorized photos, places, calendars, reminders, and memories into a personal timeline and Life Chapters.",
+        contactTitle:"Contact Support",
+        contactBody:"If you need help, have feedback, or want to report an issue, please contact us using the information below.",
+        emailLabel:"Email",
+        responseLabel:"Response time",
+        responseBody:"We usually respond within 3–5 business days.",
+        privacyTitle:"Privacy & Data",
+        privacyBody:"You can review the Thence Privacy Policy for details about data access, storage, deletion, and user rights.",
+        privacyLink:"View Privacy Policy",
+        faqTitle:"Frequently Asked Questions",
+        faq1Q:"Where is my data stored?",
+        faq1A:"Thence is designed with privacy in mind. Personal timeline data is stored locally on your device unless a feature explicitly states otherwise.",
+        faq2Q:"Can I delete my data?",
+        faq2A:"Yes. You can delete timeline data, Life Chapters, and related content directly in the app. You can also revoke permissions at any time in iOS Settings.",
+        faq3Q:"Why does Thence request access to Photos, Calendar, Reminders, or Location?",
+        faq3A:"These permissions allow Thence to reconstruct your personal timeline, discover meaningful days, and generate Life Chapters from authorized data.",
+        faq4Q:"How can I request account or data deletion?",
+        faq4A:"All data is stored locally. To fully remove data, simply delete the app. For additional inquiries, contact support via email.",
+        troubleshootingTitle:"Troubleshooting",
+        tip1:"Make sure Thence has the required permissions in iOS Settings.",
+        tip2:"Restart the app if recently granted permissions do not appear immediately.",
+        tip3:"Keep your device updated to the latest iOS version supported by the app.",
+        tip4:"If a purchase does not appear, use Restore Purchases in the app.",
+        footer:"© 2026 Thence. All rights reserved."
+      },
+      "zh-CN": {
+        title:"Thence 技术支持",
+        subtitle:"Thence 的帮助信息、联系方式与常见问题。",
+        languageLabel:"语言",
+        official:"官方技术支持",
+        aboutTitle:"关于 Thence",
+        aboutBody:"Thence 帮助你将已授权的照片、地点、日历、提醒事项与回忆整理成个人时间轴与人生章节，重新发现走过的日子。",
+        contactTitle:"联系支持",
+        contactBody:"如果你需要帮助、想反馈建议，或需要报告问题，请通过以下方式联系我们。",
+        emailLabel:"邮箱",
+        responseLabel:"响应时间",
+        responseBody:"我们通常会在 3–5 个工作日内回复。",
+        privacyTitle:"隐私与数据",
+        privacyBody:"你可以查看 Thence 隐私政策，了解数据访问、存储、删除和用户权利等信息。",
+        privacyLink:"查看隐私政策",
+        faqTitle:"常见问题",
+        faq1Q:"我的数据存储在哪里？",
+        faq1A:"Thence 以隐私优先为设计原则。除非某项功能另有明确说明，个人时间轴数据会存储在你的设备本地。",
+        faq2Q:"我可以删除数据吗？",
+        faq2A:"可以。你可以在 App 内删除时间轴数据、人生章节及相关内容，也可以随时在 iOS 设置中撤销权限。",
+        faq3Q:"为什么 Thence 需要照片、日历、提醒事项或位置权限？",
+        faq3A:"这些权限用于重构你的个人时间轴、发现有意义的日子，并基于已授权数据生成人生章节。",
+        faq4Q:"如何申请账号或数据删除？",
+        faq4A:"所有数据均存储在设备本地。删除 App 即可彻底清除数据。如有其他需求，可通过邮箱联系支持团队。",
+        troubleshootingTitle:"故障排查",
+        tip1:"请确认已在 iOS 设置中授予 Thence 所需权限。",
+        tip2:"如果刚授权后内容未立即出现，请尝试重启 App。",
+        tip3:"请将设备更新至 App 支持的最新 iOS 版本。",
+        tip4:"如果购买权益未显示，请在 App 内使用“恢复购买”。",
+        footer:"© 2026 Thence。保留所有权利。"
+      },
+      "zh-TW": {
+        title:"Thence 技術支援",
+        subtitle:"Thence 的協助資訊、聯絡方式與常見問題。",
+        languageLabel:"語言",
+        official:"官方技術支援",
+        aboutTitle:"關於 Thence",
+        aboutBody:"Thence 幫助你將已授權的照片、地點、行事曆、提醒事項與回憶整理成個人時間軸與人生章節，重新發現走過的日子。",
+        contactTitle:"聯絡支援",
+        contactBody:"如果你需要協助、想提供建議，或需要回報問題，請透過以下方式聯絡我們。",
+        emailLabel:"電子郵件",
+        responseLabel:"回覆時間",
+        responseBody:"我們通常會在 3–5 個工作日內回覆。",
+        privacyTitle:"隱私與資料",
+        privacyBody:"你可以查看 Thence 隱私權政策，了解資料存取、儲存、刪除和使用者權利等資訊。",
+        privacyLink:"檢視隱私權政策",
+        faqTitle:"常見問題",
+        faq1Q:"我的資料儲存在哪裡？",
+        faq1A:"Thence 以隱私優先為設計原則。除非某項功能另有明確說明，個人時間軸資料會儲存在你的裝置本機。",
+        faq2Q:"我可以刪除資料嗎？",
+        faq2A:"可以。你可以在 App 內刪除時間軸資料、人生章節及相關內容，也可以隨時在 iOS 設定中撤銷權限。",
+        faq3Q:"為什麼 Thence 需要照片、行事曆、提醒事項或位置權限？",
+        faq3A:"這些權限用於重構你的個人時間軸、發現有意義的日子，並基於已授權資料產生人生章節。",
+        faq4Q:"如何申請帳號或資料刪除？",
+        faq4A:"所有資料均儲存在裝置本機。刪除 App 即可徹底清除資料。如有其他需求，可透過電子郵件聯繫支援團隊。",
+        troubleshootingTitle:"疑難排解",
+        tip1:"請確認已在 iOS 設定中授予 Thence 所需權限。",
+        tip2:"如果剛授權後內容未立即出現，請嘗試重新啟動 App。",
+        tip3:"請將裝置更新至 App 支援的最新 iOS 版本。",
+        tip4:"如果購買權益未顯示，請在 App 內使用「恢復購買」。",
+        footer:"© 2026 Thence。保留所有權利。"
+      },
+      "ja": {
+        title:"Thence サポート",
+        subtitle:"Thence のヘルプ、連絡先、よくある質問。",
+        languageLabel:"言語",
+        official:"公式サポート",
+        aboutTitle:"Thence について",
+        aboutBody:"Thence は、許可された写真、場所、カレンダー、リマインダー、思い出を個人のタイムラインとライフチャプターに整理し、過ごしてきた日々をもう一度たどるためのアプリです。",
+        contactTitle:"サポートに連絡",
+        contactBody:"ヘルプが必要な場合、フィードバックがある場合、または問題を報告したい場合は、以下の連絡先までお問い合わせください。",
+        emailLabel:"メール",
+        responseLabel:"返信目安",
+        responseBody:"通常、3〜5営業日以内に返信します。",
+        privacyTitle:"プライバシーとデータ",
+        privacyBody:"データへのアクセス、保存、削除、ユーザーの権利については、Thence のプライバシーポリシーをご確認ください。",
+        privacyLink:"プライバシーポリシーを見る",
+        faqTitle:"よくある質問",
+        faq1Q:"データはどこに保存されますか？",
+        faq1A:"Thence はプライバシーを重視して設計されています。機能内で明示されていない限り、個人のタイムラインデータは端末内に保存されます。",
+        faq2Q:"データを削除できますか？",
+        faq2A:"はい。アプリ内でタイムラインデータ、ライフチャプター、関連コンテンツを削除できます。iOS 設定から権限を取り消すこともできます。",
+        faq3Q:"なぜ写真、カレンダー、リマインダー、位置情報へのアクセスが必要ですか？",
+        faq3A:"これらの権限は、個人のタイムラインを再構築し、意味のある日々を見つけ、許可されたデータからライフチャプターを生成するために使用されます。",
+        faq4Q:"アカウントまたはデータの削除をリクエストするには？",
+        faq4A:"すべてのデータは端末内に保存されています。アプリを削除するだけでデータを完全に削除できます。その他のお問い合わせは、メールでサポートまでご連絡ください。",
+        troubleshootingTitle:"トラブルシューティング",
+        tip1:"iOS 設定で Thence に必要な権限が付与されていることを確認してください。",
+        tip2:"権限を付与した直後に内容が表示されない場合は、アプリを再起動してください。",
+        tip3:"端末をアプリが対応する最新の iOS バージョンに更新してください。",
+        tip4:"購入内容が表示されない場合は、アプリ内の「購入を復元」を使用してください。",
+        footer:"© 2026 Thence. All rights reserved."
+      },
+      "ko": {
+        title:"Thence 지원",
+        subtitle:"Thence 도움말, 연락처 및 자주 묻는 질문입니다.",
+        languageLabel:"언어",
+        official:"공식 지원",
+        aboutTitle:"Thence 소개",
+        aboutBody:"Thence는 사용자가 허용한 사진, 장소, 캘린더, 미리 알림과 기억을 개인 타임라인과 라이프 챕터로 정리해 지나온 날들을 다시 발견할 수 있도록 돕습니다.",
+        contactTitle:"지원 문의",
+        contactBody:"도움이 필요하거나 의견을 보내고 싶거나 문제를 신고하려면 아래 연락처로 문의해 주세요.",
+        emailLabel:"이메일",
+        responseLabel:"응답 시간",
+        responseBody:"보통 영업일 기준 3~5일 이내에 답변드립니다.",
+        privacyTitle:"개인정보 및 데이터",
+        privacyBody:"데이터 접근, 저장, 삭제 및 사용자 권리에 대한 자세한 내용은 Thence 개인정보 처리방침을 확인해 주세요.",
+        privacyLink:"개인정보 처리방침 보기",
+        faqTitle:"자주 묻는 질문",
+        faq1Q:"내 데이터는 어디에 저장되나요?",
+        faq1A:"Thence는 개인정보 보호를 우선으로 설계되었습니다. 기능에서 별도로 명시하지 않는 한 개인 타임라인 데이터는 사용자의 기기에 로컬로 저장됩니다.",
+        faq2Q:"데이터를 삭제할 수 있나요?",
+        faq2A:"네. 앱에서 타임라인 데이터, 라이프 챕터 및 관련 콘텐츠를 삭제할 수 있으며, iOS 설정에서 권한을 철회할 수도 있습니다.",
+        faq3Q:"Thence가 사진, 캘린더, 미리 알림 또는 위치 권한을 요청하는 이유는 무엇인가요?",
+        faq3A:"이 권한들은 개인 타임라인을 재구성하고 의미 있는 날들을 찾으며, 허용된 데이터를 기반으로 라이프 챕터를 생성하는 데 사용됩니다.",
+        faq4Q:"계정 또는 데이터 삭제를 요청하려면?",
+        faq4A:"모든 데이터는 기기에 로컬로 저장됩니다. 앱을 삭제하면 데이터가 완전히 제거됩니다. 추가 문의 사항은 이메일로 지원팀에 문의해 주세요.",
+        troubleshootingTitle:"문제 해결",
+        tip1:"iOS 설정에서 Thence에 필요한 권한이 허용되어 있는지 확인하세요.",
+        tip2:"최근에 권한을 허용했는데 내용이 바로 표시되지 않으면 앱을 다시 시작해 보세요.",
+        tip3:"기기를 앱이 지원하는 최신 iOS 버전으로 업데이트하세요.",
+        tip4:"구매 항목이 표시되지 않으면 앱에서 구매 복원을 사용하세요.",
+        footer:"© 2026 Thence. All rights reserved."
+      }
+    };
+
+    function normalizeLang(input) {
+      if (!input) return "en";
+      const lower = input.trim().toLowerCase();
+      if (["zh", "zh-cn", "zh-hans", "cn"].includes(lower)) return "zh-CN";
+      if (["zh-tw", "zh-hant", "tw", "hk", "zh-hk"].includes(lower)) return "zh-TW";
+      if (["ja", "jp", "ja-jp"].includes(lower)) return "ja";
+      if (["ko", "kr", "ko-kr"].includes(lower)) return "ko";
+      if (lower.startsWith("en")) return "en";
+      return "en";
+    }
+
+    function getInitialLanguage() {
+      const params = new URLSearchParams(window.location.search);
+      const fromQuery = params.get("lang") || params.get("locale");
+      return normalizeLang(fromQuery || navigator.language || "en");
+    }
+
+    function applyLanguage(lang) {
+      const normalized = normalizeLang(lang);
+      const dict = translations[normalized] || translations.en;
+      document.documentElement.lang = normalized;
+      document.title = dict.title;
+      document.querySelectorAll("[data-i18n]").forEach(node => {
+        const key = node.dataset.i18n;
+        if (dict[key]) node.textContent = dict[key];
+      });
+      document.getElementById("language").value = normalized;
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", normalized);
+      window.history.replaceState({}, "", url.toString());
+    }
+
+    document.getElementById("language").addEventListener("change", e => {
+      applyLanguage(e.target.value);
+    });
+
+    applyLanguage(getInitialLanguage());
+  </script>
+</body>
+</html>
