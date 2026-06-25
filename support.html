@@ -233,7 +233,7 @@
       <section class="card">
         <h2 data-i18n="privacyTitle">Privacy & Data</h2>
         <p data-i18n="privacyBody">You can review the Thence Privacy Policy for details about data access, storage, deletion, and user rights.</p>
-        <p><a href="https://whzzone.github.io/thence-docs/privacy.html" target="_blank" data-i18n="privacyLink">View Privacy Policy</a></p>
+        <p><a id="privacyLink" href="https://whzzone.github.io/thence-docs/privacy.html" target="_blank" data-i18n="privacyLink">View Privacy Policy</a></p>
       </section>
 
       <section class="card">
@@ -463,6 +463,30 @@
       const url = new URL(window.location.href);
       url.searchParams.set("lang", normalized);
       window.history.replaceState({}, "", url.toString());
+    }
+
+    function applyLanguage(lang) {
+      const normalized = normalizeLang(lang);
+      const dict = translations[normalized] || translations.en;
+      document.documentElement.lang = normalized;
+      document.title = dict.title;
+      document.querySelectorAll("[data-i18n]").forEach(node => {
+        const key = node.dataset.i18n;
+        if (dict[key]) node.textContent = dict[key];
+      });
+      document.getElementById("language").value = normalized;
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", normalized);
+      window.history.replaceState({}, "", url.toString());
+    
+      // 拼接语言参数到隐私链接
+      const linkEl = document.getElementById("privacyLink");
+      if (linkEl) {
+        const baseUrl = "https://whzzone.github.io/thence-docs/privacy.html";
+        const targetUrl = new URL(baseUrl);
+        targetUrl.searchParams.set("lang", normalized);
+        linkEl.href = targetUrl.href;
+      }
     }
 
     document.getElementById("language").addEventListener("change", e => {
